@@ -1,32 +1,87 @@
+/* ===== Global ===== */
+
 body{
   margin:0;
-  background:#0b0b12;
+  font-family: 'Segoe UI', sans-serif;
   color:white;
-  font-family:Arial;
   text-align:center;
-  padding:40px;
+  padding:25px;
+
+  background: linear-gradient(-45deg,#0b0b12,#120021,#1a0033,#0b0b12);
+  background-size: 400% 400%;
+  animation: bg 12s ease infinite;
 }
 
-.app{
-  max-width:400px;
-  margin:auto;
+@keyframes bg{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
 }
 
-button{
-  width:100%;
-  padding:15px;
-  margin-top:15px;
-  background:#6a00ff;
-  color:white;
-  border:none;
-  border-radius:30px;
-  font-size:18px;
+
+/* ===== Glass Card ===== */
+
+.card{
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  padding:20px;
+  border-radius:20px;
+  box-shadow:0 0 25px rgba(138,43,226,0.4);
+  margin-top:20px;
 }
+
+
+/* ===== Headings ===== */
+
+h1,h2{
+  color:#d9b3ff;
+  text-shadow:0 0 12px #6a00ff;
+}
+
+
+/* ===== Inputs ===== */
 
 select{
   width:100%;
-  padding:10px;
-  margin-top:10px;
+  padding:14px;
+  margin-top:12px;
+  border:none;
+  border-radius:15px;
   background:#151521;
   color:white;
+  font-size:14px;
+}
+
+
+/* ===== Buttons ===== */
+
+button{
+  width:100%;
+  padding:14px;
+  margin-top:12px;
+  border:none;
+  border-radius:30px;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+
+  background: linear-gradient(45deg,#6a00ff,#9d4edd);
+  color:white;
+
+  transition: 0.25s;
+}
+
+button:hover{
+  transform: scale(1.05);
+  box-shadow:0 0 18px #9d4edd;
+}
+
+
+/* ===== History Cards ===== */
+
+.history-item{
+  background:#151521;
+  border-radius:12px;
+  padding:10px;
+  margin-top:10px;
 }
