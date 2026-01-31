@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Learn</title>
+  <link rel="stylesheet" href="learn.css">
+</head>
+
+<body>
+
+<h2>🎮 Speak & Learn</h2>
+
+<h1 id="word">Hello</h1>
+
+<button onclick="play()">🔊 Hear</button>
+<button onclick="record()">🎤 Speak</button>
+
+<p id="result"></p>
+
+<button onclick="location.href='index.html'">⬅ Back</button>
+
+<script src="learn.js"></script>
+
+</body>
+</html>
