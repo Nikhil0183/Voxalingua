@@ -1,28 +1,47 @@
 const micBtn = document.getElementById("micBtn");
 const output = document.getElementById("output");
 
-let recognition = new webkitSpeechRecognition();
-
 micBtn.onclick = ()=>{
-  recognition.lang = sourceLang.value;
-  recognition.start();
-};
+  const rec = new webkitSpeechRecognition();
+  rec.lang = sourceLang.value;
+  rec.start();
 
-recognition.onresult = async (e)=>{
-  let text = e.results[0][0].transcript;
+  rec.onresult = async (e)=>{
+    const original = e.results[0][0].transcript;
 
-  const target = targetLang.value.split("-")[0];
+    const target = targetLang.value.split("-")[0];
 
-  const res = await fetch(
-    `https://api.mymemory.translated.net/get?q=${text}&langpair=auto|${target}`
-  );
+    const res = await fetch(
+      `https://api.mymemory.translated.net/get?q=${original}&langpair=auto|${target}`
+    );
 
-  const data = await res.json();
-  speak(data.responseData.translatedText, targetLang.value);
+    const data = await res.json();
+    const translated = data.responseData.translatedText;
+
+    speak(translated, targetLang.value);
+
+    output.innerText = translated;
+
+    saveHistory(original, translated);
+  };
 };
 
 function speak(text, lang){
-  let u = new SpeechSynthesisUtterance(text);
+  const u = new SpeechSynthesisUtterance(text);
   u.lang = lang;
   speechSynthesis.speak(u);
+}
+
+
+// 🔥 NEW PART (history saving)
+function saveHistory(from, to){
+  const history = JSON.parse(localStorage.getItem("history")) || [];
+
+  history.push({
+    from: from,
+    to: to,
+    time: new Date().toLocaleString()
+  });
+
+  localStorage.setItem("history", JSON.stringify(history));
 }
