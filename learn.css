@@ -1,17 +1,23 @@
 body{
-  background:#0b0b12;
+  margin:0;
+  background: linear-gradient(135deg,#0b0b12,#1a0033);
   color:white;
+  font-family:'Segoe UI',sans-serif;
   text-align:center;
-  font-family:Arial;
-  padding:40px;
+  padding:30px;
+}
+
+h1{
+  color:#d9b3ff;
 }
 
 button{
   width:100%;
-  padding:15px;
-  margin-top:10px;
-  background:#9d4edd;
+  padding:14px;
+  margin-top:12px;
   border:none;
+  border-radius:30px;
+  background:linear-gradient(45deg,#6a00ff,#9d4edd);
   color:white;
-  border-radius:25px;
+  font-weight:bold;
 }
