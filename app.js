@@ -1,30 +1,35 @@
 const micBtn = document.getElementById("micBtn");
 const output = document.getElementById("output");
 
-micBtn.onclick = ()=>{
-  const rec = new webkitSpeechRecognition();
-  rec.lang = sourceLang.value;
-  rec.start();
+micBtn.onclick = () => {
 
-  rec.onresult = async (e)=>{
-    const original = e.results[0][0].transcript;
+  const recognition = new webkitSpeechRecognition();
+  recognition.lang = sourceLang.value;   // use selected source
+  recognition.start();
 
+  recognition.onresult = async (e) => {
+
+    const spokenText = e.results[0][0].transcript;
+
+    // ✅ FIX: use real source + target (NOT auto)
+    const source = sourceLang.value.split("-")[0];
     const target = targetLang.value.split("-")[0];
 
-    const res = await fetch(
-      `https://api.mymemory.translated.net/get?q=${original}&langpair=auto|${target}`
-    );
+    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(spokenText)}&langpair=${source}|${target}`;
 
+    const res = await fetch(url);
     const data = await res.json();
+
     const translated = data.responseData.translatedText;
 
     speak(translated, targetLang.value);
 
     output.innerText = translated;
 
-    saveHistory(original, translated);
+    saveHistory(spokenText, translated);
   };
 };
+
 
 function speak(text, lang){
   const u = new SpeechSynthesisUtterance(text);
@@ -33,13 +38,13 @@ function speak(text, lang){
 }
 
 
-// 🔥 NEW PART (history saving)
+// history saving
 function saveHistory(from, to){
   const history = JSON.parse(localStorage.getItem("history")) || [];
 
   history.push({
-    from: from,
-    to: to,
+    from,
+    to,
     time: new Date().toLocaleString()
   });
 
