@@ -1,32 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+  <meta charset="UTF-8" />
   <title>VoxaLingua</title>
+
+  <!-- Mobile responsive -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Styles -->
   <link rel="stylesheet" href="style.css">
 </head>
 
+
 <body>
 
-<div class="app">
+  <!-- Title -->
   <h1>🎤 VoxaLingua</h1>
+  <p style="opacity:0.7;">Speak once. Be understood everywhere.</p>
 
-  <select id="sourceLang"></select>
-  <select id="targetLang"></select>
 
-  <button id="micBtn">🎙 Speak</button>
-<button onclick="location.href='conversation.html'">💬 Conversation Mode</button>
-<button onclick="location.href='history.html'">🕘 History</button>
+  <!-- 🔮 Glass Card Wrapper -->
+  <div class="card">
 
-  <p id="output"></p>
+    <!-- Language selectors -->
+    <select id="sourceLang"></select>
+    <select id="targetLang"></select>
 
-  <button onclick="location.href='learn.html'">🎮 Learn Languages</button>
-</div>
+    <!-- Speak button -->
+    <button id="micBtn">🎙 Speak & Translate</button>
 
-<script src="languages.js"></script>
-<script src="app.js"></script>
+    <!-- Navigation buttons -->
+    <button onclick="location.href='conversation.html'">💬 Conversation Mode</button>
+
+    <button onclick="location.href='history.html'">🕘 History</button>
+
+    <button onclick="location.href='learn.html'">🎮 Learn Languages</button>
+
+    <!-- Output text -->
+    <p id="output" style="margin-top:15px;font-weight:bold;"></p>
+
+  </div>
+
+
+  <!-- Scripts -->
+  <script src="languages.js"></script>
+  <script src="app.js"></script>
 
 </body>
 </html>
-
-
